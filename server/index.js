@@ -3,17 +3,22 @@ const express = require("express");
 const cors = require("cors");
 const connectDb = require("./db/db");
 const transactionRouter = require("./Routes/transaction.routes");
-const authRouter = require("./Routes/auth.routes");
+
 const cookieParser = require("cookie-parser");
 
 const app = express();
 connectDb();
 
 app.use(express.json());
-app.use(cors());
+app.use(
+  cors({
+    origin: "http://localhost:5173", // your frontend URL
+    credentials: true,
+  })
+);
 app.use(cookieParser());
 app.use("/api/transactions", transactionRouter);
-app.use("/api/auth", authRouter);
+
 const PORT = process.env.PORT || 5000;
 
 // Routes
