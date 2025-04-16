@@ -13,13 +13,12 @@ import {
 const MonthlyChart = () => {
   const [transactions, setTransactions] = useState([]);
   const [monthlyData, setMonthlyData] = useState([]);
+  const URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get(
-          "http://localhost:5000/api/transactions/gettransaction"
-        );
+        const res = await axios.get(`${URL}/api/transactions/gettransaction`);
         setTransactions(res.data);
       } catch (err) {
         console.error("Failed to fetch transactions", err);
