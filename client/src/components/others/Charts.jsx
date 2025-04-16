@@ -6,7 +6,7 @@ import MonthlyChart from "./Monthly";
 
 const Charts = () => {
   const [transactions, setTransactions] = useState([]);
-  const URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
+  const URL = import.meta.env.VITE_API_URL || "http://localhost:5000/";
 
   useEffect(() => {
     const fetchData = async () => {
