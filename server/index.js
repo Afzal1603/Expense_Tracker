@@ -9,13 +9,27 @@ const cookieParser = require("cookie-parser");
 const app = express();
 connectDb();
 
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://expense-tracker-ten-ruby.vercel.app",
+];
 app.use(express.json());
+
 app.use(
   cors({
-    origin: "http://localhost:5173", // your frontend URL
+    origin: function (origin, callback) {
+      // allow requests with no origin like mobile apps or curl
+      if (!origin) return callback(null, true);
+      if (allowedOrigins.includes(origin)) {
+        return callback(null, true);
+      } else {
+        return callback(new Error("Not allowed by CORS"));
+      }
+    },
     credentials: true,
   })
 );
+
 app.use(cookieParser());
 app.use("/api/transactions", transactionRouter);
 
