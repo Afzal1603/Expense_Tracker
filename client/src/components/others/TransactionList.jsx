@@ -6,7 +6,7 @@ const TransactionList = () => {
   const URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
   useEffect(() => {
     const fetchData = async () => {
-      const res = await axios.get(`${URL}/api/transactions/gettransaction`);
+      const res = await axios.get(`${URL}api/transactions/gettransaction`);
 
       setTransactions(res.data);
     };

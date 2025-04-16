@@ -18,7 +18,7 @@ const MonthlyChart = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get(`${URL}/api/transactions/gettransaction`);
+        const res = await axios.get(`${URL}api/transactions/gettransaction`);
         setTransactions(res.data);
       } catch (err) {
         console.error("Failed to fetch transactions", err);
