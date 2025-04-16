@@ -3,12 +3,16 @@ const Transaction = require("../Model/Transaction");
 const router = express.Router();
 
 router.post("/create", async (req, res) => {
-  const { amount, date, description } = req.body;
+  const { amount, date, description, category } = req.body;
+  if (!amount || !date || !description || !category) {
+    return res.status(400).json({ message: "All fields are required" });
+  }
   try {
     const transaction = new Transaction({
       amount,
       date: new Date(date),
       description,
+      category,
     });
     await transaction.save();
     res.status(201).json(transaction);
@@ -37,7 +41,7 @@ router.delete("/deletetransaction/:id", async (req, res) => {
   }
 });
 router.put("/updatetransaction/:id", async (req, res) => {
-  const { amount, date, description } = req.body;
+  const { amount, date, description, category } = req.body;
   try {
     const updatedTransaction = await Transaction.findByIdAndUpdate(
       req.params.id,
@@ -45,6 +49,7 @@ router.put("/updatetransaction/:id", async (req, res) => {
         amount,
         date,
         description,
+        category,
       },
       { new: true }
     );

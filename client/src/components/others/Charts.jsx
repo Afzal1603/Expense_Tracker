@@ -3,6 +3,7 @@ import axios from "axios";
 import TransactionChart from "./TransactionChart";
 import TransactionList from "./TransactionList";
 import MonthlyChart from "./Monthly";
+import CategoryPieChart from "./CategoryPieChart";
 
 const Charts = () => {
   const [transactions, setTransactions] = useState([]);
@@ -26,6 +27,7 @@ const Charts = () => {
       ) : (
         <>
           <TransactionChart data={transactions} />
+          <CategoryPieChart></CategoryPieChart>
         </>
       )}
     </div>

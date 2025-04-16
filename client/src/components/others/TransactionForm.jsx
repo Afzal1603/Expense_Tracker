@@ -3,15 +3,21 @@ import { addTransaction } from "../../services/api";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
-// import axios from "axios";
-import { useSelector } from "react-redux";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const TransactionForm = () => {
-  const user = useSelector((state) => state.auth.user);
   const [amount, setAmount] = useState("");
   const [date, setDate] = useState("");
   const [description, setDescription] = useState("");
+  const [category, setCategory] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -20,15 +26,21 @@ const TransactionForm = () => {
       amount: parseFloat(amount),
       date,
       description,
+      category,
     };
+
     try {
       await addTransaction(transaction);
       toast.success("Transaction added successfully");
+
+      // Reset form
       setAmount("");
       setDate("");
       setDescription("");
+      setCategory("");
     } catch (error) {
-      console.log(error);
+      console.error(error);
+      toast.error("Failed to add transaction");
     }
   };
 
@@ -73,11 +85,29 @@ const TransactionForm = () => {
           />
         </div>
 
+        <div>
+          <Label htmlFor="category">Category</Label>
+          <Select value={category} onValueChange={setCategory}>
+            <SelectTrigger className="w-full">
+              <SelectValue placeholder="Select category" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="Food">Food</SelectItem>
+              <SelectItem value="Transport">Transport</SelectItem>
+              <SelectItem value="Shopping">Shopping</SelectItem>
+              <SelectItem value="Entertainment"> Entertainment</SelectItem>
+              <SelectItem value="Educational"> Educational</SelectItem>
+              <SelectItem value="Others">Others</SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
+
         <Button type="submit" className="w-full">
           Add Transaction
         </Button>
       </form>
-      <ToastContainer />
+
+      <ToastContainer position="top-right" autoClose={3000} />
     </>
   );
 };

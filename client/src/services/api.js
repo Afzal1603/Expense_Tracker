@@ -6,22 +6,3 @@ const API = axios.create({
 
 export const addTransaction = (data) =>
   API.post("/api/transactions/create", data);
-
-export const fetchTransactions = async () => {
-  try {
-    const response = await axios.get(API_URL);
-    return response.data;
-  } catch (error) {
-    console.error("Error fetchi  ng transactions:", error);
-    throw error;
-  }
-};
-
-export const deleteTransaction = async (id) => {
-  try {
-    await axios.delete(`${API_URL}/${id}`);
-  } catch (error) {
-    console.error("Error deleting transaction:", error);
-    throw error;
-  }
-};

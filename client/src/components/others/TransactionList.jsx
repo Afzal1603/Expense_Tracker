@@ -8,10 +8,16 @@ import {
   DialogContent,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 const TransactionList = () => {
   const [transactions, setTransactions] = useState([]);
@@ -44,7 +50,7 @@ const TransactionList = () => {
   };
 
   const openEditModal = (tx) => {
-    setEditData({ ...tx }); // prefill values
+    setEditData({ ...tx });
     setEditModalOpen(true);
   };
 
@@ -60,7 +66,6 @@ const TransactionList = () => {
         editData
       );
       toast.success("Transaction updated");
-      // Update local state
       setTransactions((prev) =>
         prev.map((tx) => (tx._id === editData._id ? res.data : tx))
       );
@@ -87,6 +92,7 @@ const TransactionList = () => {
             <p className="text-sm text-muted-foreground">
               {new Date(tx.date).toLocaleDateString()}
             </p>
+            <p className="text-xs text-muted-foreground">{tx.category}</p>
           </div>
 
           {/* Amount */}
@@ -153,6 +159,28 @@ const TransactionList = () => {
                   value={editData.date.split("T")[0]}
                   onChange={handleEditChange}
                 />
+              </div>
+              <div>
+                <Label>Category</Label>
+                <Select
+                  value={editData.category}
+                  onValueChange={(value) =>
+                    setEditData((prev) => ({ ...prev, category: value }))
+                  }
+                >
+                  <SelectTrigger className="w-full">
+                    <SelectValue placeholder="Select category" />
+                  </SelectTrigger>
+
+                  <SelectContent>
+                    <SelectItem value="Food">Food</SelectItem>
+                    <SelectItem value="Transport">Transport</SelectItem>
+                    <SelectItem value="Shopping">Shopping</SelectItem>
+                    <SelectItem value="Entertainment">Entertainment</SelectItem>
+                    <SelectItem value="Educational"> Educational</SelectItem>
+                    <SelectItem value="Others">Others</SelectItem>
+                  </SelectContent>
+                </Select>
               </div>
               <Button className="w-full" onClick={handleUpdate}>
                 Update
