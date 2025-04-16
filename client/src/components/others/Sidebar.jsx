@@ -15,7 +15,7 @@ const Sidebar = () => {
       <nav className="flex flex-col gap-3">
         <Link to="/form">
           <Button variant="secondary" className="justify-start w-full">
-            Transaction From
+            Add transaction
           </Button>
         </Link>
         <Link to="/monthly">
