@@ -31,7 +31,7 @@ app.use(
 );
 
 app.use(cookieParser());
-app.use("/transactions", transactionRouter);
+app.use("/api/transactions", transactionRouter);
 
 const PORT = process.env.PORT || 5000;
 
