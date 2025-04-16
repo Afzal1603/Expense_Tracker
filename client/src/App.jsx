@@ -7,7 +7,9 @@ import Header from "./components/others/Header";
 import TransactionForm from "./components/others/TransactionForm";
 import MonthlyChart from "./components/others/Monthly";
 import TransactionList from "./components/others/TransactionList";
-import Charts from "./components/others/Charts";
+import SetBudget from "./components/others/SetBudget";
+import BudgetCharts from "./components/others/BudgetCharts";
+import SetBudgetWithInsights from "./components/others/SetBudgetWithInsights";
 
 const App = () => {
   return (
@@ -21,7 +23,11 @@ const App = () => {
             <Route path="/form" element={<TransactionForm />}></Route>
             <Route path="/monthly" element={<MonthlyChart />}></Route>
             <Route path="/expenses-list" element={<TransactionList />}></Route>
-            <Route path="/daily" element={<Charts />}></Route>
+            <Route path="/comparison" element={<BudgetCharts />}></Route>
+            <Route
+              path="/setbudget"
+              element={<SetBudgetWithInsights />}
+            ></Route>
           </Routes>
         </main>
       </div>

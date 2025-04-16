@@ -18,6 +18,11 @@ const Sidebar = () => {
             Add transaction
           </Button>
         </Link>
+        <Link to="/setbudget">
+          <Button variant="secondary" className="justify-start w-full">
+            Set Budget
+          </Button>
+        </Link>
         <Link to="/monthly">
           <Button variant="secondary" className="justify-start w-full">
             Monthly Expenses
@@ -28,9 +33,9 @@ const Sidebar = () => {
             Expenses List
           </Button>
         </Link>
-        <Link to="/daily">
+        <Link to="/comparison">
           <Button variant="secondary" className="justify-start w-full">
-            Daily Expenses
+            Compare budget
           </Button>
         </Link>
       </nav>

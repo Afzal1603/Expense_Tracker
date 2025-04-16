@@ -3,7 +3,7 @@ const express = require("express");
 const cors = require("cors");
 const connectDb = require("./db/db");
 const transactionRouter = require("./Routes/transaction.routes");
-
+const budgetRoutes = require("./Routes/budget.routes");
 const cookieParser = require("cookie-parser");
 
 const app = express();
@@ -18,7 +18,6 @@ app.use(express.json());
 app.use(
   cors({
     origin: function (origin, callback) {
-      // allow requests with no origin like mobile apps or curl
       if (!origin) return callback(null, true);
       if (allowedOrigins.includes(origin)) {
         return callback(null, true);
@@ -32,6 +31,7 @@ app.use(
 
 app.use(cookieParser());
 app.use("/api/transactions", transactionRouter);
+app.use("/api/budgets", budgetRoutes);
 
 const PORT = process.env.PORT || 5000;
 
