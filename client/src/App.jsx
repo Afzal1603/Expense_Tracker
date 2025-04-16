@@ -2,7 +2,7 @@ import React from "react";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import DashBoard from "./Pages/DashBoard";
-import ProtectedRoute from "./components/others/ProtectedRoute";
+
 import Sidebar from "./components/others/Sidebar";
 import Header from "./components/others/Header";
 import TransactionForm from "./components/others/TransactionForm";

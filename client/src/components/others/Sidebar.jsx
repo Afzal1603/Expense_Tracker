@@ -4,7 +4,14 @@ import { Link } from "react-router-dom";
 const Sidebar = () => {
   return (
     <aside className="bg-gray-950 text-white  min-w-auto md: min-h-auto md:min-h-screen p-6  ">
-      <h2 className="text-2xl font-bold mb-6">Finance Visualizer</h2>
+      <div className="flex justify-between">
+        <h2 className="text-2xl font-bold mb-6">Finance Visualizer</h2>
+        <Link to="/">
+          <Button className="md:hidden block " variant="secondary">
+            Back to dashboard
+          </Button>
+        </Link>
+      </div>
       <nav className="flex flex-col gap-3">
         <Link to="/form">
           <Button variant="secondary" className="justify-start w-full">
