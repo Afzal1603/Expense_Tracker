@@ -4,13 +4,7 @@ const API = axios.create({
   baseURL: import.meta.env.VITE_API_URL || "http://localhost:5000/api",
 });
 
-export const addTransaction = (data, token) =>
-  API.post("/transactions/create", data, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-    withCredentials: true,
-  });
+export const addTransaction = (data) => API.post("/transactions/create", data);
 
 export const fetchTransactions = async () => {
   try {

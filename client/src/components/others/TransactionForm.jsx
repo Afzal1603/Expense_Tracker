@@ -22,7 +22,7 @@ const TransactionForm = () => {
       description,
     };
     try {
-      await addTransaction(transaction, user.token);
+      await addTransaction(transaction);
       toast.success("Transaction added successfully");
       setAmount("");
       setDate("");
